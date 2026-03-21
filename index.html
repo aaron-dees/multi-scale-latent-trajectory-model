@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Supplementary website for Toward Interactive Texture Synthesis: A Multi-Scale Latent Trajectory Model.">
-  <meta property="og:title" content="Toward Interactive Texture Synthesis: A Multi-Scale Latent Trajectory Model"/>
+  <meta name="description" content="Supplementary website for Toward Interactive Texture Synthesis - A Multi-Scale Latent Trajectory Model.">
+  <meta property="og:title" content="Toward Interactive Texture Synthesis - A Multi-Scale Latent Trajectory Model"/>
   <meta property="og:description" content="Supplementary material for an audio texture synthesis paper, including abstract, method overview, results, and audio samples."/>
   <meta property="og:url" content="URL OF THE WEBSITE"/>
   <meta property="og:image" content="static/images/your_banner_image.png" />
@@ -11,7 +11,7 @@
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="Toward Interactive Texture Synthesis: A Multi-Scale Latent Trajectory Model">
+  <meta name="twitter:title" content="Toward Interactive Texture Synthesis - A Multi-Scale Latent Trajectory Model">
   <meta name="twitter:description" content="Supplementary website for an audio texture synthesis paper.">
   <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Toward Interactive Texture Synthesis: A Multi-Scale Latent Trajectory Model</title>
+  <title>Toward Interactive Texture Synthesis - A Multi-Scale Latent Trajectory Model</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -45,7 +45,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Toward Interactive Texture Synthesis: A Multi-Scale Latent Trajectory Model</h1>
+            <h1 class="title is-1 publication-title">Toward Interactive Texture Synthesis - A Multi-Scale Latent Trajectory Model</h1>
             <p class="is-size-5 publication-authors">Supplementary Website</p>
             <div class="is-size-5 publication-authors">
               <span class="author-block">Aaron Dees</span>,
@@ -126,17 +126,34 @@
           <h2 class="title is-3 has-text-centered">Proposed Method</h2>
           <div class="content has-text-justified">
             <p>
-              Use this section to describe the proposed multi-scale latent trajectory model, provide an overview figure, and summarize the synthesis pipeline.
+              Our proposed method aims to enable perceptually coherent and controllable audio texture synthesis. We achieve this by modeling a neural audio codec's latent trajectories at multiple temporal scales. The proposed multi-scale latent trajectory framework consists of a slow-rate variational autoencoder that captures long-term structural evolution and learns a compact latent representation for interactive manipulation, and a fast-rate conditional autoregressive model that generates local stochastic detail. Together, these components enable structured yet diverse texture generation.
             </p>
             <h3 class="title is-4">Latent Trajectory Decomposition</h3>
             <p>
-              Add content here describing how the latent trajectory is separated into complementary components across timescales.
+              We decompose latent audio trajectories into slow and fast components using Gaussian low-pass filtering, where the slow signal captures long-term structure and the fast signal represents local residual variation. By sweeping filter sizes, we evaluate how well this separation works using frequency and temporal metrics.
             </p>
+            <p>
+              Figure: Shows that with appropriate filtering, the decomposition cleanly separates structured, slowly evolving dynamics from short-term, noise-like fluctuations, with each component exhibiting distinct statistical properties.
+            </p>
+            <div class="box has-text-centered">
+              <figure>
+                <img src="static/images/model_diagrams/trajectory_decomposistion.png" alt="Latent trajectory decomposition diagram">
+              </figure>
+              <figure>
+                <img src="static/images/model_diagrams/trajectory_decomposistion_2.png" alt="Trajectory decomposition example diagram">
+              </figure>
+            </div>
 
             <h3 class="title is-4">Modeling Overview</h3>
             <p>
-              Add content here summarizing the full modeling pipeline and how the different components interact during synthesis.
+              We model the decomposed latent trajectory using a two-scale approach, where the slow component (long-term structure) is generated with a VAE from context, and the fast component (local variation) is produced by an autoregressive model conditioned on the slow signal. During synthesis, the two are combined to form the final trajectory, enabling coherent long-term evolution alongside diverse, stochastic detail.
             </p>
+            <div class="box has-text-centered">
+              <figure>
+                <img src="static/images/model_diagrams/high_level.png" alt="High-level modeling overview diagram">
+                <figcaption class="mt-2"><em>Figure: Illustrates this pipeline, where slow structure is generated first and refined with fast residual dynamics.</em></figcaption>
+              </figure>
+            </div>
 
             <h3 class="title is-4">Slow-Rate Model</h3>
             <p>
@@ -166,7 +183,7 @@
           <div class="content has-text-justified">
             <h3 class="title is-4">Audio Quality</h3>
             <p>
-              Reserve this section for perceptual evaluation, listening test summaries, spectrogram comparisons, or other evidence related to audio quality.
+              The results show that our proposed methods, the multi-scale approach significantly improves audio quality over the single-scale baseline, achieving much lower FAD scores and demonstrating the benefit of separating slow structure from fast variation. When trained per category, performance further improves and becomes competitive with latent diffusion, despite a simpler modeling approach.
             </p>
             <div class="box">
               <div class="table-container">
@@ -226,13 +243,13 @@
 
             <h3 class="title is-4">Texture Identity</h3>
             <p>
-              Reserve this section for results showing how well synthesized outputs preserve texture identity across conditions, prompts, or controls.
+              The results show that our proposed method, the multi-scale model preserves texture identity, producing summary statistics consistently close to real continuations across all measures. It outperforms the single-scale baseline and shows more stable behavior than latent diffusion, particularly for higher-order and modulation features, highlighting the benefit of explicitly modeling slow and fast dynamics separately.
             </p>
             <div class="box has-text-centered">
               <figure>
                 <img src="static/images/texture_identity.png" alt="Texture identity results figure">
                 <figcaption>
-                  Texture identity results figure.
+                  Texture summary statistics distance comparison. Distances are computed between a given signal and a shared context (both 7 seconds in length), and normalized by the distance between the context and the ground-truth (reference) continuation. Values &asymp;&nbsp;1 indicate similarity to the reference continuation, values &lt;&nbsp;1 indicate closer agreement with the context statistics, and values &gt;&nbsp;1 indicate greater dissimilarity.
                 </figcaption>
               </figure>
             </div>
@@ -249,11 +266,14 @@
           <h2 class="title is-3 has-text-centered">Audio Samples</h2>
           <div class="content has-text-justified">
             <p>
-              Use this section to present qualitative audio examples, comparisons against baselines, and interactive sample grids.
+              Below are audio samples for generated continuations given some context audio, as well as static and dynamic interpolations between texture structures.
             </p>
           </div>
 
           <h3 class="title is-4">Continuations</h3>
+          <p>
+            Audio samples of generated continuations, given context audio. Samples are provided for the given context, and continuations generated by a single-scale model, a latent diffusion model, and our proposed method, the multi-scale model.
+          </p>
           <h4 class="title is-5">Texture Category: Sea Waves</h4>
           <div class="columns is-multiline">
             <div class="column is-3">
@@ -387,6 +407,9 @@
           </div>
 
           <h3 class="title is-4">Static Interpolations</h3>
+          <p>
+            We investigate the learned latent space of the slow rate model using static interpolation, linearly blending between two encoded slow trajectories and decoding each intermediate point. This produces a sequence of independent generations that reveal how smoothly the model transitions between different texture states.
+          </p>
           <div class="columns is-centered">
             <div class="column is-two-thirds-desktop is-full-mobile">
               <div class="box has-text-centered">
