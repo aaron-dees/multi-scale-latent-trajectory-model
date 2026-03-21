@@ -133,5 +133,43 @@ body {
   font-size: smaller;
 }
 
+.image-clickable {
+  cursor: zoom-in;
+}
+
+.image-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.image-lightbox.is-active {
+  display: flex;
+}
+
+.image-lightbox-content {
+  max-width: min(95vw, 1400px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
 
 
