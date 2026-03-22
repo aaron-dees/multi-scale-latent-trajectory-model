@@ -119,6 +119,41 @@
     </div>
   </section>
 
+  <section class="section" id="long-horizon">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Long Horizon Generations</h2>
+          <div class="content has-text-justified">
+            <p>
+              This section presents long-horizon generations, where each sample is a 1-minute audio segment generated from 10 seconds of context audio.
+            </p>
+          </div>
+          <div class="columns is-multiline">
+            <div class="column is-4">
+              <div class="box">
+                <p><strong>Sea Waves</strong></p>
+                <p class="is-size-7">10s context + 1-minute generated continuation.</p>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="box">
+                <p><strong>Rain</strong></p>
+                <p class="is-size-7">10s context + 1-minute generated continuation.</p>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="box">
+                <p><strong>Thunder</strong></p>
+                <p class="is-size-7">10s context + 1-minute generated continuation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="method">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
@@ -157,16 +192,23 @@
 
             <h3 class="title is-4">Slow-Rate Model</h3>
             <p>
-              Add content here describing the model used for long-term structure and slowly varying temporal dynamics.
+              The slow-rate model uses a VAE to generate long-term trajectory structure from a context segment. A GRU-based encoder maps the context to a latent vector, which conditions a decoder to produce the continuation. The model can iteratively extend textures by feeding generated trajectories back in as new context, enabling coherent long-duration synthesis while maintaining controllable global structure.
             </p>
+            <div class="box has-text-centered">
+              <figure>
+                <img src="static/images/model_diagrams/slow_rate.png" alt="Slow-rate model diagram">
+              </figure>
+            </div>
 
             <h3 class="title is-4">Fast-Rate Model</h3>
             <p>
-              Add content here describing the model used for local detail, fast stochastic variation, and short-term continuation.
+              The fast-rate model generates the high-frequency residual using an autoregressive RNN conditioned on the slow trajectory. At each step, it predicts a stochastic residual sample based on the previous output and current slow trajectory, capturing local, stochastic dynamics. This sequential process enables flexible, long-duration generation of fine-grained detail.
             </p>
 
             <div class="box has-text-centered">
-              <p><strong>Placeholder:</strong> Add method figure, diagram, or explanatory text here.</p>
+              <figure>
+                <img src="static/images/model_diagrams/fast_rate_vae.png" alt="Fast-rate model diagram">
+              </figure>
             </div>
           </div>
         </div>
