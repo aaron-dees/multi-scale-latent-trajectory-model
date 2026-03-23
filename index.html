@@ -105,13 +105,13 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Audio textures exhibit complex temporal dynamics that are not well represented by single-scale models. We propose a multi-scale latent trajectory approach for audio texture synthesis using representations from a pre-trained neural audio codec. By decomposing latent trajectories into slow structural and fast stochastic components, we model long-term dynamics with a variational autoencoder and short-term detail with a conditional autoregressive model.
+              Audio textures exhibit complex temporal dynamics that are not well represented by single-scale models. We propose a multi-scale latent trajectory approach for audio texture synthesis using representations from a pre-trained neural audio codec. By decomposing latent trajectories into slow structural and fast stochastic components, we enable direct modeling and interpretation of the long-term temporal structure and fine grained detail of audio textures.
             </p>
             <p>
-              Experiments on environmental audio textures show that the proposed method significantly improves audio quality over a single-scale baseline and achieves performance competitive with a latent diffusion model. Using perceptually motivated summary statistics, we demonstrate that generated continuations preserve texture identity.
+              Experiments on environmental audio textures suggest that the proposed method significantly improves audio quality over a single-scale baseline and achieves performance competitive with a latent diffusion model. Using perceptually motivated summary statistics, we demonstrate that generated continuations preserve texture identity.
             </p>
             <p>
-              The proposed method exposes a smooth latent space that enables deterministic control over long-term structure, supporting coherent interpolation and continuous generation from a given context.
+              Through the proposed methods we enable continuous texture generation from a given context and expose a latent structure that may support control over long-term dynamics.
             </p>
           </div>
         </div>
@@ -304,6 +304,9 @@
                 </figcaption>
               </figure>
             </div>
+            <p>
+              While objective metrics and qualitative listening provide insight into model performance, a comprehensive evaluation of perceptual quality requires controlled listening studies. We plan to conduct formal listening experiments in future work to assess perceptual realism, continuity, and user interaction with the latent space.
+            </p>
           </div>
         </div>
       </div>
@@ -459,8 +462,12 @@
 
           <h3 class="title is-4">Static Interpolations</h3>
           <p>
-            We investigate the learned latent space of the slow rate model using static interpolation, linearly blending between two encoded slow trajectories and decoding each intermediate point. This produces a sequence of independent generations that reveal how smoothly the model transitions between different texture states.
+            The proposed model is not explicitly trained for controllability. However, by separating slow and fast dynamics, it exposes a structured latent representation of long-term texture evolution. This latent space can be probed and manipulated, providing a potential interface for future control-oriented systems.
           </p>
+          <p>
+            These interpolations provide evidence that the latent space encodes smooth and meaningful variations in texture structure. While not a full control interface, this suggests that the representation could support interactive manipulation of long-term dynamics.
+          </p>
+
           <div class="columns is-centered">
             <div class="column is-two-thirds-desktop is-full-mobile">
               <div class="box has-text-centered">
